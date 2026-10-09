@@ -4,7 +4,7 @@ Small CNN on Fashion-MNIST + Grad-CAM saliency. DL capstone of
 [Bits to Builds](https://bitstobuilds.com). 3 conv + 2 fc layers, 33k parameters,
 133 KB `model.pt`, pure-PyTorch Grad-CAM in 30 lines.
 
-**Live demo:** (fill in after `publish.sh`)
+**Live demo:** <https://fashionreader-aod2lk6m57auhtyf5jgem9.streamlit.app/>
 **Source:** <https://github.com/PJsAcademy/fashionreader>
 
 ---
