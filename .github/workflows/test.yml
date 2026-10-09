@@ -1,0 +1,30 @@
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+      - run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest
+      - name: Evaluate pre-trained model
+        # phase1_train.py is only for local retraining (downloads Fashion-MNIST).
+        # CI uses the shipped checkpoints/model.pt + test_subset.npz directly.
+        run: |
+          python src/phase2_evaluate.py
+          python src/phase3_gradcam.py
+      - name: Run pytest
+        run: pytest tests/ -q
